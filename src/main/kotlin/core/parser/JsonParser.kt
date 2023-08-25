@@ -2,6 +2,7 @@ package core.parser
 
 import core.FileFormat
 import core.document.base.Document
+import kotlinx.serialization.json.Json
 import java.io.File
 
 class JsonParser: Parser<FileFormat.JSON> {

@@ -1,4 +1,4 @@
-package ui.fragments
+package ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
@@ -8,12 +8,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import i18nresource.I18nResourcesType
 import ui.components.ResourceTypePicker
 import viewmodels.ResourcesViewModel
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun ResourcesFragment() {
+fun ResourcesPicker(onNavigate: (I18nResourcesType) -> Unit) {
     val vm = remember { ResourcesViewModel() }
 
     Column(
@@ -29,7 +30,11 @@ fun ResourcesFragment() {
 
         FlowRow(modifier = Modifier.padding(8.dp)) {
             vm.supportedResources.map {
-                ResourceTypePicker(image = it.imagePath, label = it.label, onClick = {})
+                ResourceTypePicker(
+                    image = it.imagePath,
+                    label = it.label,
+                    onClick = { onNavigate(it.type) }
+                )
             }
         }
     }

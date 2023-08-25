@@ -8,6 +8,7 @@ plugins {
 
 group = "bj.ola"
 version = "1.0-SNAPSHOT"
+val decomposeVersion = "2.0.1"
 
 repositories {
     mavenCentral()
@@ -21,6 +22,8 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:2.3.2")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.2")
     implementation(kotlin("reflect"))
+    implementation("com.arkivanov.decompose:decompose:${decomposeVersion}")
+    implementation("com.arkivanov.decompose:extensions-compose-jetbrains:${decomposeVersion}")
 }
 
 compose.desktop {

@@ -25,6 +25,7 @@ fun ResourceTypePicker(
     label: String
 ) {
     Card(
+        elevation = 20.dp,
         modifier = modifier.size(170.dp).padding(5.dp),
         onClick = onClick,
     ) {
