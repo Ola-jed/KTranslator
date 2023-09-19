@@ -14,7 +14,7 @@ import viewmodels.ResourceInputViewModel
 
 @Composable
 fun ResourceInput(resourceType: I18nResourcesType, onBack: () -> Unit) {
-    val vm = remember { ResourceInputViewModel() }
+    val vm = remember { ResourceInputViewModel(resourceType) }
 
     Column(modifier = Modifier.fillMaxSize().padding(top = 5.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -27,12 +27,12 @@ fun ResourceInput(resourceType: I18nResourcesType, onBack: () -> Unit) {
 
         TextField(
             modifier = Modifier.fillMaxWidth().fillMaxHeight(0.90f).padding(top = 5.dp),
-            value = vm.text,
-            onValueChange = { vm.text = it }
+            value = vm.inputText,
+            onValueChange = { vm.inputText = it }
         )
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-            Button(onClick = {}) {
+            Button(onClick = vm::process) {
                 Text("Continue")
             }
         }

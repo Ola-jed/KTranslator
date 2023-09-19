@@ -3,7 +3,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 plugins {
     kotlin("jvm")
     id("org.jetbrains.compose")
-    kotlin("plugin.serialization") version "1.8.20"
+    kotlin("plugin.serialization") version "1.9.0"
 }
 
 group = "bj.ola"
@@ -18,10 +18,8 @@ repositories {
 
 dependencies {
     implementation(compose.desktop.currentOs)
-    implementation("io.ktor:ktor-client-cio-jvm:2.3.2")
-    implementation("io.ktor:ktor-client-content-negotiation:2.3.2")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.2")
     implementation(kotlin("reflect"))
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("com.arkivanov.decompose:decompose:${decomposeVersion}")
     implementation("com.arkivanov.decompose:extensions-compose-jetbrains:${decomposeVersion}")
 }
