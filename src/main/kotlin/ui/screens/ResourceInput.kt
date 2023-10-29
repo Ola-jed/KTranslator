@@ -2,6 +2,8 @@ package ui.screens
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -11,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import i18nresource.I18nResourcesType
+import ui.components.DoNotTranslateInput
 import ui.components.LocalePicker
 import viewmodels.ResourceInputViewModel
 
@@ -43,7 +46,7 @@ fun ResourceInput(resourceType: I18nResourcesType, onBack: () -> Unit) {
     }
 
     AnimatedVisibility(vm.currentStep == ResourceInputViewModel.SETTING_STEP) {
-        Column(modifier = Modifier.fillMaxSize().padding(top = 5.dp)) {
+        Column(modifier = Modifier.fillMaxSize().padding(top = 5.dp).verticalScroll(rememberScrollState())) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 IconButton(onClick = onBack) {
                     Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
@@ -65,13 +68,16 @@ fun ResourceInput(resourceType: I18nResourcesType, onBack: () -> Unit) {
                 )
 
                 LocalePicker(
-                    modifier = Modifier.fillMaxWidth().height(300.dp),
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 15.dp),
                     currentLocale = vm.locale,
                     onLocaleChosen = { vm.locale = it }
                 )
 
-                // Do not translate
-
+                DoNotTranslateInput(
+                    modifier = Modifier.fillMaxWidth(),
+                    values = vm.doNotTranslate,
+                    onValuesChange = { vm.doNotTranslate = it }
+                )
 
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                     Button(

@@ -2,8 +2,6 @@ package ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -18,11 +16,41 @@ fun LocalePicker(
     currentLocale: Locale,
     onLocaleChosen: (Locale) -> Unit
 ) {
-    var expanded by mutableStateOf(false)
+    var expanded by remember { mutableStateOf(false) }
 
-    LazyColumn {
-        items(Locale.entries) { item ->
-            Text(item.code)
+    Box {
+        TextField(
+            value = currentLocale.code,
+            onValueChange = {},
+            readOnly = true,
+            placeholder = { Text("Select a locale") },
+            modifier = modifier.clickable { expanded = true },
+            trailingIcon = {
+                Icon(
+                    modifier = Modifier.clickable {
+                        expanded = !expanded
+                    },
+                    imageVector = Icons.Default.ArrowDropDown,
+                    contentDescription = null
+                )
+            }
+        )
+
+        DropdownMenu(
+            modifier = Modifier.align(Alignment.CenterEnd),
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            Locale.entries.forEach { locale ->
+                DropdownMenuItem(
+                    onClick = {
+                        onLocaleChosen(locale)
+                        expanded = false
+                    }
+                ) {
+                    Text(locale.code)
+                }
+            }
         }
     }
 }
