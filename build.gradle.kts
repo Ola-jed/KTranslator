@@ -22,6 +22,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("com.arkivanov.decompose:decompose:${decomposeVersion}")
     implementation("com.arkivanov.decompose:extensions-compose-jetbrains:${decomposeVersion}")
+    implementation("com.deepl.api:deepl-java:1.4.0")
 }
 
 compose.desktop {
