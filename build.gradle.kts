@@ -23,6 +23,7 @@ dependencies {
     implementation("com.arkivanov.decompose:decompose:${decomposeVersion}")
     implementation("com.arkivanov.decompose:extensions-compose-jetbrains:${decomposeVersion}")
     implementation("com.deepl.api:deepl-java:1.4.0")
+    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
 }
 
 compose.desktop {
