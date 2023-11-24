@@ -10,6 +10,8 @@ import core.parser.JsonParser
 import i18nresource.AngularJsonResourceFile
 import i18nresource.I18nResourceFile
 import i18nresource.I18nResourcesType
+import services.translation.DeeplTranslationService
+import services.translator.AngularResourceTranslator
 
 class ResourceInputViewModel(val resourceType: I18nResourcesType) {
     var currentStep by mutableStateOf(INPUT_STEP)
@@ -30,8 +32,15 @@ class ResourceInputViewModel(val resourceType: I18nResourcesType) {
             val ngResource = AngularJsonResourceFile(
                 doNotTranslateRegex = doNotTranslate.map { Regex(it) },
                 fileName = fileName,
-                locale = locale.code,
+                locale = locale,
                 internalDocument = document as Document<FileFormat.JSON>
+            )
+
+            val ngResourceTranslator = AngularResourceTranslator(DeeplTranslationService())
+
+            val translatedNgResource = ngResourceTranslator.translateResourceFile(
+                ngResource,
+                locale
             )
         }
 

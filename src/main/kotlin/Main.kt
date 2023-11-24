@@ -23,6 +23,7 @@ import ui.navigation.ChildStack
 import ui.navigation.ProvideComponentContext
 import ui.navigation.Screen
 import ui.screens.ResourceInput
+import ui.screens.ResourceOutput
 
 @OptIn(ExperimentalDecomposeApi::class)
 fun main() {
@@ -60,6 +61,7 @@ fun MainContent() {
         when (screen) {
             is Screen.ResourcePicker -> ResourcesPicker(onNavigate = { navigation.push(Screen.ResourceInput(it)) })
             is Screen.ResourceInput -> ResourceInput(resourceType = screen.resourceType, onBack = navigation::pop)
+            is Screen.ResourceOutput -> ResourceOutput(resourceFile = screen.resourceFile, onBack = navigation::pop)
         }
     }
 }
